@@ -14,44 +14,49 @@
 
 <body>
   <script src="js/app.js"></script>
-  <div class="container">
+  <section id="intro">
+    <div class="container">
     <h1>HelpMe.sg</h1>
-    <p>This is a help portal provided by the Singapore government. <br>We will try our best to redirect your concerns to relevant authorities.</p>
-    <div>
-    <label>Language</label>
-    <select id="language" onchange="selectLang();">
-    <option value="Select Language" disabled selected>Select Language</option>
-    <option value="English">English</option>
-    <option value="Chinese">Chinese</option>
-    <option value="Malay">Malay</option>
-    <option value="Tamil">Tamil</option>
-    <option value="Thai">Thai</option>
-    <option value="Myanmar(Burmese)">Myamar(Burmese)</option>
-    <option value="Indonesian">Indonesian</option>
-    <option value="Filipino">Filipino</option>
-  </select>
+    <p id="introLabel">This is a help portal provided by the Singapore government. <br>We will try our best to redirect your concerns to relevant authorities.</p>
   </div>
+</section>
+    <section id="language-band">
+      <div class="container">
+        <label id="languageLabel">Select Language</label>
+        <select id="language" onchange="selectLang();">
+        <option value="Select Language" disabled selected>Select Language</option>
+        <option value="english">English</option>
+        <option value="chinese">Chinese</option>
+        <option value="malay">Malay</option>
+        <option value="tamil">Tamil</option>
+      </select>
+      </div>
+</section>
+<section id="form-band">
+  <div class="container">
   <form>
-    <div>
-    <label>Explain Your Problem</label>
+  <div>
+    <label id="explainLabel">Explain Your Problem</label>
     <textarea id="explain" type="text"  placeholder="Explain Your Problem"></textarea>
+  </div>
+
+    <div>
+    <label id="filesLabel">Upload Your Documents</label>
+    <input id="file" type="text" placeholder="Upload Your Documents">
     </div>
     <div>
-    <label>Upload Your Documents</label>
-    <input id="file" type="text" placeholder="Upload Your Document">
-    </div>
-    <div>
-    <label>Email Address</label>
+    <label id="emailLabel">Email Address</label>
     <input id="email" type"email" placeholder="Email Address"></input>
     </div>
     <div>
-    <label>Phone Number</label>
+    <label id="phoneLabel">Phone Number</label>
     <input id="phone" type"phone number" placeholder="Phone Number"></input>
     <br>
-    <button id="help-form" type="button" onclick="postForm();">Submit</button>
+    <button id="submitLabel" id="help-form" type="button" onclick="postForm();">Submit</button>
   </div>
   </form>
-  </div>
+      </div>
+</section>
 
 </body>
 </html>
