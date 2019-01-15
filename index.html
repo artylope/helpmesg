@@ -22,10 +22,11 @@
 </section>
     <section id="language-band">
       <div class="container">
+        <div id="showLang"></div>
         <label id="languageLabel">Select Language</label>
         <select id="language" onchange="selectLang();">
-        <option value="Select Language" disabled selected>Select Language</option>
-        <option value="english">English</option>
+        <option value="Select Language" disabled>Select Language</option>
+        <option value="english" selected>English</option>
         <option value="chinese">Chinese</option>
         <option value="malay">Malay</option>
         <option value="tamil">Tamil</option>
@@ -52,7 +53,9 @@
     <label id="phoneLabel">Phone Number</label>
     <input id="phone" type"phone number" placeholder="Phone Number"></input>
     <br>
-    <button id="submitLabel" id="help-form" type="button" onclick="postForm();">Submit</button>
+    <div>
+    <button id="submitLabel" class="button-primary" type="button" onclick="postForm();">Submit</button>
+    </div>
   </div>
   </form>
       </div>
