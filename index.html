@@ -5,8 +5,9 @@
   <meta charset="utf-8">
 
   <title>Help.sg</title>
-  <meta name="description" content="Help.sg">
+  <meta name="description" content="Helpme.sg">
   <meta name="author" content="Open Government Products">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css">
   <link rel="stylesheet" href="css/style.css">
 
@@ -17,20 +18,20 @@
   <section id="intro">
     <div class="container">
     <h1>HelpMe.sg</h1>
-    <p id="introLabel">This is a help portal provided by the Singapore government. <br>We will try our best to redirect your concerns to relevant authorities.</p>
+    <p id="introLabel">This is a help portal provided by the Singapore government. We will try our best to redirect your concerns to relevant authorities.</p>
   </div>
 </section>
     <section id="language-band">
       <div class="container">
-        <div id="showLang"></div>
         <label id="languageLabel">Select Language</label>
-        <select id="language" onchange="selectLang();">
+        <div id="showLang"></div>
+        <!-- <select id="language" onchange="selectLang();">
         <option value="Select Language" disabled>Select Language</option>
         <option value="english" selected>English</option>
         <option value="chinese">Chinese</option>
         <option value="malay">Malay</option>
         <option value="tamil">Tamil</option>
-      </select>
+      </select> -->
       </div>
 </section>
 <section id="form-band">
@@ -40,10 +41,9 @@
     <label id="explainLabel">Explain Your Problem</label>
     <textarea id="explain" type="text"  placeholder="Explain Your Problem"></textarea>
   </div>
-
     <div>
     <label id="filesLabel">Upload Your Documents</label>
-    <input id="file" type="text" placeholder="Upload Your Documents">
+    <input id="file" type="text" placeholder="Upload Your Documents"></input>
     </div>
     <div>
     <label id="emailLabel">Email Address</label>
@@ -52,7 +52,11 @@
     <div>
     <label id="phoneLabel">Phone Number</label>
     <input id="phone" type"phone number" placeholder="Phone Number"></input>
-    <br>
+    </div>
+    <div>
+    <label id="locationLabel">Location</label>
+    <input id="location" type"text" placeholder="Location"></input>
+    </div>
     <div>
     <button id="submitLabel" class="button-primary" type="button" onclick="postForm();">Submit</button>
     </div>
