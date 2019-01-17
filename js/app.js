@@ -7,7 +7,8 @@ var phrases= {
     "files"     : "Upload Your Documents",
     "email"     : "Email Address",
     "phone"     : "Phone Number",
-    "submit"    : "Submit"
+    "submit"    : "Submit",
+    "address"   : "Address"
   },
   "chinese": {
     "language"  : "中文",
@@ -17,7 +18,8 @@ var phrases= {
     "files"     : "上传文件",
     "email"     : "电子邮件地址",
     "phone"     : "电话号码",
-    "submit"    : "提交"
+    "submit"    : "提交",
+    "address"   : "地址"
   },
   "malay": {
     "language"  : "Bahasa Melayu",
@@ -27,7 +29,8 @@ var phrases= {
     "files"     : "Memuat naik Dokumen anda",
     "email"     : "Alamat emel",
     "phone"     : "Nombor telefon",
-    "submit"    : "hantar"
+    "submit"    : "Hantar",
+    "address"   : "Alamat"
   },
   "tamil": {
     "language"  : "தமிழ்",
@@ -37,7 +40,8 @@ var phrases= {
     "files"     : "உங்கள் ஆவண பதிவேற்ற",
     "email"     : "மின்னஞ்சல் முகவரி",
     "phone"     : "தொலைபேசி எண்",
-    "submit"    : "சமர்ப்பி"
+    "submit"    : "சமர்ப்பி",
+    "address"   : "முகவரி"
   },
   "thai": {
     "language"  : "ภาษาไทย",
@@ -47,7 +51,8 @@ var phrases= {
     "files"     : "อัปโหลดเอกสารของคุณ",
     "email"     : "ที่อยู่อีเมล",
     "phone"     : "หมายเลขโทรศัพท์",
-    "submit"    : "เสนอ"
+    "submit"    : "เสนอ",
+    "address"   : "ที่อยู่"
   },
   "filipino": {
     "language"  : "Pilipino",
@@ -55,24 +60,27 @@ var phrases= {
     "select"    : "Piliin ang wika",
     "explain"   : "Ipaliwanag ang iyong Problema",
     "files"     : "Mag-upload ng iyong Document",
-    "email"     : "email Address",
-    "phone"     : "Numero ng telepono์",
-    "submit"    : "Ipasa"
+    "email"     : "Email Address",
+    "phone"     : "Numero ng telepono",
+    "submit"    : "Ipasa",
+    "address"   : "Address"
   }
 };
 
 function postForm(){
   var explain = document.getElementById('explain').value;
-  var files = document.getElementById('file').value;
+  var files = document.getElementById('files').value;
   var email = document.getElementById('email').value;
   var phone = document.getElementById('phone').value;
+  var address = document.getElementById('address').value;
 
   var casefile = {
     caseId : 123,
-    description : explain,
+    explain : explain,
     files : files,
     email : email,
     phone : phone,
+    address : address,
   };
 
   console.log(casefile);
@@ -86,7 +94,9 @@ function chooseLang(clicked_id){
   document.getElementById('filesLabel').innerHTML = phrases[clicked_id].files;
   document.getElementById('emailLabel').innerHTML = phrases[clicked_id].email;
   document.getElementById('phoneLabel').innerHTML = phrases[clicked_id].phone;
+  document.getElementById('addressLabel').innerHTML = phrases[clicked_id].address;
   document.getElementById('submitLabel').innerHTML = phrases[clicked_id].submit;
+
 };
 
 
@@ -98,6 +108,7 @@ function selectLang(){
   document.getElementById('filesLabel').innerHTML = phrases[language].files;
   document.getElementById('emailLabel').innerHTML = phrases[language].email;
   document.getElementById('phoneLabel').innerHTML = phrases[language].phone;
+  document.getElementById('addressLabel').innerHTML = phrases[language].address;
   document.getElementById('submitLabel').innerHTML = phrases[language].submit;
 }
 
@@ -112,14 +123,48 @@ window.onload = function() {
 
   var i;
   for (i = 0; i < lang.length; i++) {
-    appendString += '<button class="languageSelect" id="'
-    + Object.keys(phrases)[i]
-    +'" onclick="chooseLang(this.id);">'
-    + Object.values(phrases)[i].language
-    + '</button>';
+    appendString += '<button class="languageSelect" id="'+
+    Object.keys(phrases)[i]+
+    '" onclick="chooseLang(this.id);">'+
+    Object.values(phrases)[i].language+
+    '</button>';
     // console.log(appendString);
   };
 
   // console.log(document.getElementById('showLang'))
   document.getElementById('showLang').innerHTML = appendString;
-}
+};
+
+
+const caseList = document.querySelector('#case-list');
+
+function renderCase(doc){
+  let li = document.createElement('li');
+  let explain =  document.createElement('span');
+  let files = document.createElement('span');
+  let email = document.createElement('span');
+  let phone = document.createElement('span');
+  let address = document.createElement('span');
+
+  li.setAttribute('data-id', doc.id);
+  explain.textContent = doc.data().explain;
+  files.textContent = doc.data().files;
+  email.textContent = doc.data().email;
+  phone.textContent = doc.data().phone;
+  address.textContent = doc.data().address;
+
+  li.appendChild(explain);
+  li.appendChild(files);
+  li.appendChild(email);
+  li.appendChild(phone);
+  li.appendChild(address);
+
+  caseList.appendChild(li);
+};
+
+db.collection('cases').get().then((snapshot) => {
+// console.log(snapshot.docs);
+snapshot.docs.forEach(doc => {
+    renderCase(doc);
+  })
+})

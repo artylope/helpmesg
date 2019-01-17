@@ -10,11 +10,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css">
   <link rel="stylesheet" href="css/style.css">
-
+  <script src="https://www.gstatic.com/firebasejs/5.7.3/firebase.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.7.3/firebase-firestore.js"></script>
 </head>
 
 <body>
-  <script src="js/app.js"></script>
+
   <section id="intro">
     <div class="container">
     <h1>HelpMe.sg</h1>
@@ -43,7 +44,7 @@
   </div>
     <div>
     <label id="filesLabel">Upload Your Documents</label>
-    <input id="file" type="text" placeholder="Upload Your Documents"></input>
+    <input id="files" type="text" placeholder="Upload Your Documents"></input>
     </div>
     <div>
     <label id="emailLabel">Email Address</label>
@@ -54,8 +55,8 @@
     <input id="phone" type"phone number" placeholder="Phone Number"></input>
     </div>
     <div>
-    <label id="locationLabel">Location</label>
-    <input id="location" type"text" placeholder="Location"></input>
+    <label id="addressLabel">Location</label>
+    <input id="address" type"text" placeholder="Address"></input>
     </div>
     <div>
     <button id="submitLabel" class="button-primary" type="button" onclick="postForm();">Submit</button>
@@ -64,6 +65,29 @@
   </form>
       </div>
 </section>
+<section id="show-cases">
+  <div class="container">
+    <h1>Cases</h1>
+    <ul id="case-list">
 
+    </ul>
+  </div>
+</section>
+<script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyBHawl1V0xoVZ2EhIJoAB10t3jrM7YsTTA",
+      authDomain: "helpsg-57213.firebaseapp.com",
+      databaseURL: "https://helpsg-57213.firebaseio.com",
+      projectId: "helpsg-57213",
+      storageBucket: "helpsg-57213.appspot.com",
+      messagingSenderId: "699261042786"
+    };
+    firebase.initializeApp(config);
+
+    const db = firebase.firestore();
+    db.settings({ timestampsInSnapshots: true });
+</script>
+<script src="js/app.js"></script>
 </body>
 </html>
