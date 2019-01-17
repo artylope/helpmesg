@@ -50,6 +50,6 @@ button.languageSelect {
   list-style: none;
   margin-top: 50px;
   padding-bottom: 50px;
-  border: 1px solid #ccc; }
+  border-bottom: 1px solid #ccc; }
   #case-list li span {
     display: block; }
