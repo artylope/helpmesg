@@ -159,12 +159,12 @@ function renderCase(doc){
   let cross = document.createElement('button');
 
   li.setAttribute('data-id', doc.id);
-  name.textContent = doc.data().name;
-  explain.textContent = doc.data().explain;
-  files.textContent = doc.data().files;
-  email.textContent = doc.data().email;
-  phone.textContent = doc.data().phone;
-  address.textContent = doc.data().address;
+  name.textContent = 'name:' + doc.data().name;
+  explain.textContent = 'explain:' + doc.data().explain;
+  files.textContent = 'files:' + doc.data().files;
+  email.textContent = 'email:' + doc.data().email;
+  phone.textContent = 'phone:' + doc.data().phone;
+  address.textContent = 'address:' + doc.data().address;
   cross.textContent = 'x';
 
   li.appendChild(name);
@@ -191,7 +191,7 @@ db.collection('cases').get().then((snapshot) => {
 snapshot.docs.forEach(doc => {
     renderCase(doc);
   })
-})
+});
 
 //saving form
 const form = document.querySelector('#add-case-form');
@@ -207,3 +207,16 @@ form.addEventListener('submit', (e) => {
   });
   form.reset();
 });
+
+//real-time listening
+db.collection('cases').onSnapshot(snapshot => {
+  let changes = snapshot.docChanges();
+  changes.forEach( change => {
+    if(change.type == 'added'){
+      renderCase(change.doc);
+    } else if (change.type == 'removed') {
+      let li = caseList.querySelector('[data-id=' + change.doc.id + ']');
+      caseList.removeChild(li);
+    }
+  })
+})
